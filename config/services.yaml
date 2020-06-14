@@ -11,3 +11,8 @@ services:
     resource: '../src/*'
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
+  LaSalle\UrlShortener\JudithVilela\UrlShortened\Infrastructure\Ui\Cli\ShortenerCommand:
+    arguments:
+      - '@LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\UrlShortener\UrlShortener'
+    tags:
+      - { name: 'console.command', command: 'app:url-shortener' }
