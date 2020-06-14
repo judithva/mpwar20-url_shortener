@@ -28,7 +28,8 @@
         "symfony/yaml": "^5.1",
         "ext-json": "^1.7",
         "ext-curl": "^7.3",
-        "ramsey/uuid": "^4.0"
+        "ramsey/uuid": "^4.0",
+        "ext-PDO": "^7.3"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1.0",
