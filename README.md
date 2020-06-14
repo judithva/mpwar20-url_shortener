@@ -22,7 +22,10 @@ Previamente se ha de tener instalado [Docker](https://www.docker.com/get-started
 
 Para inicializar el proyecto se ha de levantar el entorno siguiendo los siguientes pasos:
 
+    * Para levantar el servidor y base de datos   
     sudo docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d
+    
+    * Para hacer uso de la consola del comando
     sudo make interactive
 
 Una vez se haya levantado el entorno es necesario ejecutar el script de nuestro esquema de datos: 
@@ -42,6 +45,10 @@ commando CLI desde nuestro [make interactive](sudo make interactive), hemos de u
 Después de acortar el enlace con el commando CLI [app:url-shortener](src/UrlShortened/Infrastructure/Ui/Cli/ShortenerCommand.php), se dispara el evento [UrlWasShorten](src/UrlShortened/Domain/Model/Event/UrlWasShorten.php) que guardará toda 
 la información de nuestro agregado [UrlShortened](src/UrlShortened/Domain/Model/Aggregate/UrlShortened.php), mediante nuestro caso de uso [SaveUrl](src/UrlShortened/Application/SaveUrl/SaveUrl.php) .
 
+### 🎰 Contador
+
+El [Endpoint HTTP](src/UrlShortened/Infrastructure/Ui/Http/GetShortenUrlsNumberByCampaignController.php) devuelve un JSON con los enlaces acortados segmentados por `utm_campaign`, queda pendiente de devolver el JSON con el total de enlaces
+acortados.
 
 ## 🚀 Arquitectura
 Esta practica sigue el patrón de Arquitectura Hexagonal, para ello se ha estructurado de la siguiente  manera:
@@ -50,6 +57,7 @@ Esta practica sigue el patrón de Arquitectura Hexagonal, para ello se ha estruc
 $ tree
 
 src
+├── CacheKernel.php
 ├── Kernel.php
 ├── Shared
 │   ├── Domain
@@ -64,6 +72,10 @@ src
 │               └── SymfonyEvent.php
 └── UrlShortened
     ├── Application
+    │   ├── GetShortenUrlsNumberPerCampaign
+    │   │   ├── GetShortenUrlsNumberPerCampaign.php
+    │   │   ├── GetShortenUrlsNumberPerCampaignResponse.php
+    │   │   └── GetShortenUrlsNumberResponse.php
     │   ├── SaveUrl
     │   │   ├── SaveUrl.php
     │   │   └── SaveUrlRequest.php
@@ -76,28 +88,38 @@ src
     │   ├── Model
     │   │   ├── Aggregate
     │   │   │   └── UrlShortened.php
+    │   │   ├── Dto
+    │   │   │   └── ShortenUrlsPerCampaignNumber.php
     │   │   ├── Event
     │   │   │   └── UrlWasShorten.php
     │   │   └── ValueObject
     │   │       ├── UrlId.php
     │   │       └── Url.php
     │   ├── Service
+    │   │   ├── ShortenUrlsPerCampaignCounter.php
     │   │   └── UrlShortener.php
     │   └── UrlShortenedRepository.php
     └── Infrastructure
         ├── Persistence
         │   ├── MysqlDatabase.php
         │   └── Repository
+        │       ├── MySQLShortenUrlsPerCampaignCounter.php
         │       └── MySQLUrlShortenedRepository.php
         ├── Service
         │   └── BiltyUrlShortener.php
         └── Ui
-            └── Cli
-                └── ShortenerCommand.php
+            ├── Cli
+            │   └── ShortenerCommand.php
+            └── Http
+                └── GetShortenUrlsNumberByCampaignController.php
 
 ```
 
 ## 🤔 Consideraciones
 
-*  Cabe mencionar que con el uso de algunas dependencias de Symfony se aprovechado para realizar la inyección de dependencias en el fichero [service.yaml](config/services.yaml)
-   y así tener el código limpio.
+*  Cabe mencionar que con el uso de algunas dependencias de [Symfony](https://symfony.com/doc/current/index.html) se aprovechado para realizar la inyección de dependencias en el fichero [services.yaml](config/services.yaml)
+   y así tener el código limpio. 
+*  En el fichero [routes.yaml](config/routes.yaml) se ha declarado el punto de entrada de nuestro EndPoint HTTP.
+*  En esta practica no se ha instalado Symfony como base sino algunas de sus dependencias para poder implementar las funcionalidades requeridas por lo que se ha tenido que incluir algunas clases y archivos.
+
+         

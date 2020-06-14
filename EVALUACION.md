@@ -134,6 +134,6 @@ En este caso, **el enlace deberá apuntar a la clase que represente el punto de 
 | 🔗 Acortar  | 👌 Implementación | 21,6% |   ✅    |  [app:url-shortener](src/UrlShortened/Infrastructure/Ui/Cli/ShortenerCommand.php)      |
 | 🏪 Guardar  | 👀 Funcionalidad  | 6,3%  |   ✅    |        |
 | 🏪 Guardar  | 👌 Implementación | 25,2% |   ✅    |  [UrlShortener](src/UrlShortened/Application/UrlShortener/UrlShortener.php)      |
-| 🎰 Contador | 👀 Funcionalidad  | 6,3%  | ❌/✅   |        |
-| 🎰 Contador | 👌 Implementación | 25,2% | ❌/✅   |        |
+| 🎰 Contador | 👀 Funcionalidad  | 6,3%  |   ❌    |        |
+| 🎰 Contador | 👌 Implementación | 25,2% |   ✅    |  [EndPoint](src/UrlShortened/Infrastructure/Ui/Http/GetShortenUrlsNumberByCampaignController.php)       |
 
