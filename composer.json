@@ -29,7 +29,8 @@
         "ext-json": "^1.7",
         "ext-curl": "^7.3",
         "ramsey/uuid": "^4.0",
-        "ext-PDO": "^7.3"
+        "ext-PDO": "^7.3",
+        "symfony/event-dispatcher": "^5.1"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1.0",
