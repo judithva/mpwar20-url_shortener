@@ -1,0 +1,13 @@
+parameters:
+
+services:
+  # this makes public all the services defined in this file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+
+  LaSalle\UrlShortener\JudithVilela\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
