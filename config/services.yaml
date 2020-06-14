@@ -11,6 +11,14 @@ services:
     resource: '../src/*'
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
+  LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\SaveUrlOnUrlWasShorten:
+    tags:
+      - { name: kernel.event_listener, event: 'url_shortened.url_was_shorten' }
+
+  LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\UrlShortener\UrlShortener:
+    arguments:
+      - '@LaSalle\UrlShortener\JudithVilela\UrlShortened\Domain\Service\UrlShortener'
+
   LaSalle\UrlShortener\JudithVilela\UrlShortened\Infrastructure\Ui\Cli\ShortenerCommand:
     arguments:
       - '@LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\UrlShortener\UrlShortener'
