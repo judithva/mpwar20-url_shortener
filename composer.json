@@ -1,25 +1,22 @@
 {
-    "name": "codelytv/php-bootstrap",
+    "name": "Acortador de URL",
     "description": "Starting point if you want to bootstrap a project in PHP following best practices.",
     "type": "project",
     "keywords": [
-        "bootstrap",
-        "skeleton",
-        "kata",
-        "TDD",
-        "boilerplate"
+        "Url",
+        "Url Shortened",
+        "Bilty",
+        "Desarrollo Eficiente",
+        "DDD",
+        "Arquitectura Hexagonal"
     ],
-    "homepage": "https://codely.tv",
+    "homepage": "https://github.com/LaSalleURL/mpwat20-url_shortener-judithvilela",
+    "time": "2020-06-05",
     "license": "MIT",
     "authors": [
         {
-            "name": "Javier Ferrer",
-            "homepage": "https://codely.tv",
-            "role": "Developer"
-        },
-        {
-            "name": "Rafa Gómez",
-            "homepage": "https://codely.tv",
+            "name": "Judith Vilela",
+            "email": "judithzenaida.vilela@students.salle.url.edu",
             "role": "Developer"
         }
     ],
@@ -35,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "CodelyTv\\PhpBootstrap\\": "src/"
+            "LaSalle\\UrlShortener\\JudithVilela\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CodelyTv\\PhpBootstrapTest\\": "tests/"
+            "LaSalle\\UrlShortenerTest\\": "tests/"
         }
     },
     "minimum-stability": "stable",
