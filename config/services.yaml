@@ -11,6 +11,14 @@ services:
     resource: '../src/*'
     exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
+  LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\GetShortenUrlsNumberPerCampaign\GetShortenUrlsNumberPerCampaign:
+    arguments:
+      - '@LaSalle\UrlShortener\JudithVilela\UrlShortened\Infrastructure\Persistence\Repository\MySQLShortenUrlsPerCampaignCounter'
+
+  LaSalle\UrlShortener\JudithVilela\UrlShortened\Infrastructure\Ui\Http\GetShortenUrlsNumberByCampaignController:
+    arguments:
+      - '@LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\GetShortenUrlsNumberPerCampaign\GetShortenUrlsNumberPerCampaign'
+
   LaSalle\UrlShortener\JudithVilela\UrlShortened\Application\SaveUrlOnUrlWasShorten:
     tags:
       - { name: kernel.event_listener, event: 'url_shortened.url_was_shorten' }
